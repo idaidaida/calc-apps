@@ -1,7 +1,7 @@
 .main {
     width: 80%;
     margin: auto;
-
+    color: gray;
 }
 
 .l-calc {
@@ -20,9 +20,12 @@
 
 .display {
     width: 100%;
-    height: 30px;
+    height: 4em;
     box-sizing: border-box;
     border: lightgray;
+    padding-right: 10px;
+    text-align: center;
+    font-size: 3em;
 }
 
 .l-btns-row {
@@ -36,4 +39,10 @@
     margin: 2px;
     padding: 10px;
     background: white;
+}
+
+.btn-important {
+    background: blue;
+    border: blue;
+    color: white;
 }
