@@ -22,13 +22,13 @@
                     <div class="btn">1</div>
                     <div class="btn">2</div>
                     <div class="btn">3</div>
-                    <div class="btn">÷</div>
+                    <div class="btn">/</div>
                 </div>
                 <div class="l-btns-row">
                     <div class="btn">4</div>
                     <div class="btn">5</div>
                     <div class="btn">6</div>
-                    <div class="btn">×</div>
+                    <div class="btn">*</div>
                 </div>
                 <div class="l-btns-row">
                     <div class="btn">7</div>
@@ -38,8 +38,8 @@
                 </div>
                 <div class="l-btns-row">
                     <div class="btn">0</div>
-                    <div class="btn">=</div>
                     <div class="btn">C</div>
+                    <div class="btn btn-important">=</div>
                     <div class="btn">+</div>
                 </div>
             </div>
@@ -48,7 +48,49 @@
 
     <script>
         $(function () {
+            appendValues = function (word_prev, word_after) {
+                if (isNaN(word_after)) {
+                    word_after = " " + word_after + " ";
+                }
+                word_prev += word_after;
+                return word_prev;
+            }
 
+            let is_answer = true;
+
+            $(".btn").click(function () {
+                let current_value = $(".display").val();
+                if (is_answer) {
+                    current_value = "";
+                    is_answer = false;
+                }
+                let new_value = $(this).text();
+
+                if (new_value == "C") {
+                    $(".display").val("");
+                } else {
+                    if (new_value == "=") {
+                        $(".display").val(eval(current_value.trim()));
+                        is_answer = true;
+                    } else {
+                        let appended_word = appendValues(current_value, new_value);
+                        $(".display").val(appended_word);
+                    }
+                }
+            });
+
+            $(".btn").mouseover(function () {
+                $(this).css("background", "yellow");
+                $(this).css("color", "white");
+            })
+            $(".btn").mouseout(function () {
+                if ($(this).text() == "=") {
+                    $(this).css("background", "blue");
+                } else {
+                    $(this).css("background", "white");
+                    $(this).css("color", "gray");
+                }
+            })
         })
     </script>
 </body>
